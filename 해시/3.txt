@@ -1,0 +1,13 @@
+import java.util.Arrays;
+
+class Solution {
+    public boolean solution(String[] phone_book) {
+          String[] phone = new String[]{"1568", "1496", "1259", "869"};
+        Arrays.sort(phone); 
+        for (int i = 0; i < phone.length; i++) {
+           System.out.println(phone[i]);
+        }
+
+        return true; 
+    }
+}

@@ -1,0 +1,19 @@
+function solution(participant, completion) {
+    const Cnt = {};
+    let answer = {};
+    participant.forEach(name => {
+        Cnt[name] = (Cnt[name] || 0) + 1
+    })
+    completion.forEach(name => {
+        Cnt[name] = Cnt[name] - 1;
+    })
+    
+    Object.keys(Cnt).map(name => {
+        if(Cnt[name] > 0){
+          answer = name;
+        }
+    })
+    return answer
+    }
+                  
+                   

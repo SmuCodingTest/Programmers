@@ -1,0 +1,21 @@
+function solution(clothes) {
+    var answer = 1;
+    let Cnt = {};
+    
+    clothes.forEach(item => {
+        const category = item[1];
+        
+        if (Cnt[category]) {
+            Cnt[category].push(item[0]);
+        }
+        else {
+            Cnt[category] = [item[0]];
+        }
+    });
+     for (const [key, value] of Object.entries(Cnt)) {
+        answer *= (value.length + 1)
+         console.log(key, value)
+    }
+    return answer-1;
+// 만약 headgear에 여러값이 있더라도 그 요소 하나하나는 결국 안쓰거나 쓰거나 두가지 경우의수.
+}

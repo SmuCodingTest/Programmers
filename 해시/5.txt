@@ -1,0 +1,43 @@
+function solution(genres, plays) {
+  var answer = [];
+  const genreMap = new Map();
+  const genrePlays = new Map();
+  
+  for (let i = 0; i < genres.length; i++) {
+    const genre = genres[i];
+    const play = plays[i];
+    
+    if (!genreMap.has(genre)) {
+      genreMap.set(genre, []);
+      genrePlays.set(genre, 0);
+    }
+   
+    genreMap.get(genre).push({ index: i, play });
+    genrePlays.set(genre, genrePlays.get(genre) + play);
+  }
+  const sortedGenres = Array.from(genrePlays.keys()).sort((a, b) => genrePlays.get(b) - genrePlays.get(a));
+  
+  for (let i = 0; i < sortedGenres.length; i++) {
+    const genre = sortedGenres[i];
+    const songs = genreMap.get(genre);
+    songs.sort((a, b) => {
+      if (a.play === b.play) {
+        return a.index - b.index;
+      } else {
+        return b.play - a.play;
+      }
+    });
+    
+    answer.push(songs[0].index);
+    if (songs.length > 1) {
+      answer.push(songs[1].index);
+    }
+  }
+  
+  console.log(answer);
+  return answer;
+}
+
+const genres = ["classic", "pop", "classic", "classic", "pop"];
+const plays = [500, 600, 150, 800, 2500];
+solution(genres, plays);
