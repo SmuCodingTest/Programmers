@@ -1,0 +1,29 @@
+import java.util.ArrayList;
+import java.util.List;
+import java.util.PriorityQueue;
+class Solution {
+    public int solution(int[][] jobs) {
+        PriorityQueue<int[]> pq = new PriorityQueue<>((a, b) -> a[1] - b[1]);
+        List<Integer> endtime = new ArrayList<>();
+        int answer = 0;
+       for (int[] job : jobs) {
+           pq.add(job);
+}
+            int[] fjob = pq.poll();
+            int firstjob = fjob[0] + fjob[1];
+            endtime.add(fjob[1]);
+         while (!pq.isEmpty()) {
+            int[] job = pq.poll();
+            int nextjob = firstjob + job[1];
+            int timetaken = nextjob - job[0];
+            firstjob = nextjob;
+            endtime.add(timetaken);
+        }
+         for (int time : endtime) {
+            System.out.println("time: " + time);
+             answer += time;
+        }
+        answer = (answer/jobs.length);
+        return answer;
+    }
+}

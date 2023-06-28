@@ -1,0 +1,31 @@
+function solution(operations) {
+    var answer = [];
+    let heap = [];
+    for(let i =0; i < operations.length; i++){
+        // console.log(operations[i])
+        operations[i] = operations[i].trim().split(' ');
+        console.log(operations[i]);
+    }
+// I면 +1 인덱스를 큐에 삽입, D그리고 다음 -1이면, 최솟값 삭제 뭐 이런식. operations의 길이가 될때까지 삽입.
+    
+    for(let i = 0; i < operations.length; i++){
+        if(operations[i][0] === 'I'){
+            heap.push(operations[i][1]);
+            heap.sort((a,b) => a - b);
+        }
+        else if(operations[i][0] === 'D'){
+            operations[i][1] > 0 ? heap.pop() : heap.shift() // 양수일 경우 최댓값 삭제. 음수일 경우 최솟가 ㅄ 삭제
+            heap.sort((a,b) => a - b);
+        }
+    }
+    if(heap.length === 0){
+        return [0,0]
+    }
+    else{
+        heap = heap.map(Number);
+        return [heap[heap.length-1], heap.shift()]
+    }
+    
+    console.log(heap);
+    return answer;
+}
