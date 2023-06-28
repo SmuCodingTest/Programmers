@@ -25,3 +25,6 @@
 | 주차   | 주제 | 1번 문제              | 2번 문제                | 3번 문제             | 4번 문제 | 5번 문제    | 6번 문제    | 완료 여부 |
 | :--:   | :--: | :--:                 | :--:                    | :--:                | :--:    | :--:        | :--:       | :--:      |
 | 1주차   | [해시](https://school.programmers.co.kr/learn/courses/30/parts/12077) | 폰켓몬               | 완주하지 못한 선수       | 전화번호 목록         | 의상     | 베스트앨범 |             |   `완료`     |
+| 2주차   | [스택&큐](https://school.programmers.co.kr/learn/courses/30/parts/12081) | 같은숫자는싫어               | 기능개발       | 다리를지나는트럭         | 올바른괄호    | 주식가격 |     프로세스        |   `완료`     |
+| 3주차   | [힙](https://school.programmers.co.kr/learn/courses/30/parts/12117) | 더 맵게               | 디스크 컨트롤러       | 이중우선순위큐         | 최소 힙    | N번째 큰 수 |     절대값 힙        |   `완료`     |
+| 4주차   | [정렬](https://school.programmers.co.kr/learn/courses/30/parts/12198) | K번째 수               | H-Index       | 가장 큰 수         |  신입 사원  | 강의실 배정 |     좋다        |   `완료`     |
