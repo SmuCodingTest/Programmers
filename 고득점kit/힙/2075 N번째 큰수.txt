@@ -1,0 +1,93 @@
+// const fs = require('fs');
+// const [_N, ...input] = fs.readFileSync("/dev/stdin").toString().trim().split("\n");
+// const N = +_N;
+// const matrix = input.map(line => line.replace(/\r/g, '').split(' ').map(Number));
+const fs = require('fs');
+const matrix = fs.readFileSync('/dev/stdin', 'utf8').split('\n').map(line => line.split(' ')).flat().map(Number);
+
+const N = matrix[0];
+matrix.shift();
+
+// console.log(N, matrix);
+class Nnumber {
+    constructor() {
+        this.heap = [ null ];
+    }
+    
+    size() {
+        return this.heap.length - 1;
+    }
+    
+    getMin() {
+        return this.heap[1] ? this.heap[1] : null;
+    }
+    
+    swap(a, b) {
+        [ this.heap[a], this.heap[b] ] = [ this.heap[b], this.heap[a] ];
+    }
+    
+    heappush(value) {
+        this.heap.push(value);
+        let curIdx = this.heap.length - 1;
+        let parIdx = (curIdx / 2) >> 0;
+        
+        while(curIdx > 1 && this.heap[parIdx] > this.heap[curIdx]) {
+            this.swap(parIdx, curIdx)
+            curIdx = parIdx;
+            parIdx = (curIdx / 2) >> 0;
+        }
+    }
+    
+    heappop() {
+        const min = this.heap[1];	
+        if(this.heap.length <= 2) this.heap = [ null ];
+        else this.heap[1] = this.heap.pop();   
+        
+        let curIdx = 1;
+        let leftIdx = curIdx * 2;
+        let rightIdx = curIdx * 2 + 1; 
+        
+        if(!this.heap[leftIdx]) return min;
+        if(!this.heap[rightIdx]) {
+            if(this.heap[leftIdx] < this.heap[curIdx]) {
+                this.swap(leftIdx, curIdx);
+            }
+            return min;
+        }
+
+        while(this.heap[leftIdx] < this.heap[curIdx] || this.heap[rightIdx] < this.heap[curIdx]) {
+            const minIdx = this.heap[leftIdx] > this.heap[rightIdx] ? rightIdx : leftIdx;
+            this.swap(minIdx, curIdx);
+            curIdx = minIdx;
+            leftIdx = curIdx * 2;
+            rightIdx = curIdx * 2 + 1;
+        }
+
+        return min;
+    }
+}
+
+
+const Nnum = new Nnumber();
+// for(let i = 0; i < 1; i++){
+//     for(let j=0; j < N; j++){
+//    Nnum.heappush(matrix[i][j]);
+// }}
+
+
+// for(let i = 1; i < N; i++) {
+//     for(let j = 0; j < N; j++){
+//         Nnum.heappush(matrix[i][j]);
+//         Nnum.heappop();
+//     }
+// }
+
+// console.log(Nnum);
+for(let i = 0; i < N; i++) {
+    Nnum.heappush(matrix[i]);
+}
+for(let i = N; i < N*N; i++) {
+    Nnum.heappush(matrix[i]);
+    Nnum.heappop();
+}
+console.log(Nnum.heappop());
