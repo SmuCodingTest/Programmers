@@ -1,0 +1,15 @@
+function solution(citations) {
+    let sorted_arr = citations.sort((a,b)=>b-a);
+    let h; // h_index 초깃값
+
+	
+		//index값이 n이 됨.
+    sorted_arr.forEach((citation, index)=>{
+        if (index + 1 <= citation) {
+            h = index + 1;
+        } 
+    })
+    
+    var answer = h;
+    return answer;
+}

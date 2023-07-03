@@ -1,0 +1,30 @@
+function compareFn(a, b) {
+    const ab = a + b;
+    const ba = b + a;
+
+    if (ab > ba) {
+        return -1; //ab가 먼저옴
+    }
+    if (ab < ba){
+        return 1; //ba가 먼저옴
+    }
+    
+  return 0;
+}
+
+
+function solution(numbers) {
+    var answer = '';
+    
+    let newArray = numbers.map((number)=>{
+        return number.toString();
+    })
+    
+    answer = newArray.sort(compareFn).join("");
+
+		if (answer.charAt(0) === "0") {
+        answer = "0";
+    } // 테스트케이스 11번 예외처리 -> 삼항연산자로 바꾸면 좋을듯
+    
+    return answer;
+}
