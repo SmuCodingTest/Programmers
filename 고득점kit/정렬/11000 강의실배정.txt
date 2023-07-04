@@ -1,0 +1,27 @@
+
+const fs = require('fs');
+
+const input = fs.readFileSync('./예시1.txt', 'utf8');
+let arr = input.trim().split('\n').map(line => line.trim().split(' ').map(Number));
+let length = arr[0];
+let answer = 0;
+arr.splice(0, 1);
+
+arr.sort((a, b) => a[0] - b[0]);
+let endTime = [];
+endTime.push(arr[0][1]);
+
+for (let i = 1; i < length; i++) {
+if (arr[i][0] >= endTime[0]) {
+// 현재 수업의 시작 시간이 이전 수업의 종료 시간보다 크거나 같을 때
+endTime.shift(); // 이전 수업의 종료 시간 제거
+} else {
+answer++; // 강의실 개수 증가
+}
+endTime.push(arr[i][1]); // 현재 수업의 종료 시간 추가
+endTime.sort(); // 종료 시간을 오름차순으로 정렬
+}
+
+answer += endTime.length; // 현재 강의실에 진행 중인 수업의 개수를 강의실 개수에 추가
+
+console.log(answer);
