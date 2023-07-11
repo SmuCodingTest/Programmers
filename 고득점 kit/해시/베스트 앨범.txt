@@ -1,0 +1,46 @@
+import java.util.*;
+
+class Solution {
+	public int[] solution(String[] genres, int[] plays) {
+		int[] answer = {};
+		int len = plays.length;
+		int count = 0;
+    HashMap<String, Integer> map = new HashMap<>();
+    HashMap<Integer, Integer> track = new HashMap<>();
+
+
+    for(int i = 0; i<len; i++){
+        map.put(genres[i],  map.getOrDefault(genres[i], 0) + plays[i]);
+        track.put(i, plays[i]);
+    }
+
+    ArrayList<String> first_music = new ArrayList<>(map.keySet());
+
+    Collections.sort(first_music, (o1, o2) -> (map.get(o2).compareTo(map.get(o1))));
+
+    ArrayList<Integer> first_play = new ArrayList<>(track.keySet());
+
+    Collections.sort(first_play, (o1, o2) -> (track.get(o2).compareTo(track.get(o1))));
+
+    ArrayList<Integer> list = new ArrayList<>();
+
+
+    for(String s : first_music){
+        count = 0;
+        for(int i : first_play){
+            if(genres[i].equals(s) && count < 2){
+                list.add(i);
+                count ++;
+            }
+
+        }
+    }
+
+    answer = new int[list.size()];
+    for(int i=0; i<list.size();i++){
+        answer[i] = list.get(i);
+    }
+
+    return answer;
+ }
+}
