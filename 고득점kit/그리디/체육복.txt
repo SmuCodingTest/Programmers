@@ -1,0 +1,19 @@
+function solution(n, lost, reserve) {
+    var answer = 0;
+    let hasReserve = reserve.sort((a,b)=>a-b).filter((item)=>!lost.includes(item));
+    // 빌려줄 수 있는 얘들
+    let NonhasReserve = lost.sort((a,b)=>a-b).filter((item)=>!reserve.includes(item));
+    // 빌려야 하는 얘들
+    
+    const FinalLost = NonhasReserve.filter((lost) => {
+        const res = hasReserve.find((reserve) => Math.abs(lost-reserve) === 1);
+        // 둘의 차이가 절댓값 1이어야 빌려줄 수 있음.
+        if(!res){
+            return lost;
+            //만약 빌려줄 사람이 없다면. 못빌리는 사람을 나중에 전체에서 빼야하니 return (안쪽문인 find문만 return)
+        }
+        hasReserve = hasReserve.filter((reserve) => reserve !== res);
+        //빌려준 사람을 제외.
+    })
+    return n - FinalLost.length;
+}

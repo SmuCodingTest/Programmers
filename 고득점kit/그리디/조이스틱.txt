@@ -1,0 +1,29 @@
+function solution(name) {
+    var answer = 0;
+    let len = name.length;
+    let pos = 0;
+    let code = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+    
+    name = name.split('');
+    
+    while(!name.every(s=>s==='A')){
+        for(let i=0; i<len; i++){
+            if(name[pos+i]!==undefined && name[pos+i]!=='A'){ //right
+                pos = pos+i;
+                answer+=i;
+                break;
+            }else if(name[pos-i<0?len+pos-i:pos-i]!=='A'){ //left
+                pos = pos-i<0?len+pos-i:pos-i;
+                answer+=i;
+                break;
+            }
+        }
+
+        let upDown = code.indexOf(name[pos]);
+        name[pos] = 'A'
+        upDown = upDown>13?26-upDown:upDown;
+        answer+=upDown;
+    }
+    
+    return answer;
+}
