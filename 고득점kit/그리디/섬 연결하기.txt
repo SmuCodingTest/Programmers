@@ -1,0 +1,48 @@
+function solution(n, costs) {
+  // 그래프 초기화
+  const graph = {};
+  for (let i = 0; i < n; i++) {
+    graph[i] = [];
+  }
+
+  // 그래프 구성
+  for (let [start, end, cost] of costs) {
+    graph[start].push([end, cost]);
+    graph[end].push([start, cost]);
+  }
+
+  // 최소 비용을 저장할 배열
+  const minCost = new Array(n).fill(Number.MAX_SAFE_INTEGER);
+  minCost[0] = 0; // 시작점의 비용은 0
+
+  // 방문 여부를 저장할 배열
+  const visited = new Array(n).fill(false);
+
+  // 다익스트라 알고리즘
+  for (let i = 0; i < n - 1; i++) {
+    let minVertex = -1;
+    let minDist = Number.MAX_SAFE_INTEGER;
+
+    // 방문하지 않은 노드 중 최소 비용을 가진 노드 선택
+    for (let j = 0; j < n; j++) {
+      if (!visited[j] && minCost[j] < minDist) {
+        minVertex = j;
+        minDist = minCost[j];
+      }
+    }
+
+    visited[minVertex] = true;
+
+    // 선택한 노드와 연결된 노드들의 최소 비용 업데이트
+    for (let [next, cost] of graph[minVertex]) {
+      if (!visited[next] && cost < minCost[next]) {
+        minCost[next] = cost;
+      }
+    }
+  }
+
+  // 최소 비용의 합 계산
+  const answer = minCost.reduce((acc, curr) => acc + curr);
+
+  return answer;
+}

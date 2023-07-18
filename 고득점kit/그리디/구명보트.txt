@@ -1,0 +1,24 @@
+function solution(people, limit) {
+    let answer = [...people];
+    let cnt = 0;
+    answer.sort((a,b) => a-b);
+    while(answer.length !== 0){
+        // for(let i=0; i<answer.length; i++){
+        //     console.log(answer);
+        //     console.log(i);
+        if(answer[0] + answer[answer.length-1] <= limit){
+            answer.pop();
+            answer.shift();
+            cnt++;
+        }
+        else{
+            answer.pop();
+            cnt++;
+        }
+            // }
+    }
+    // 작은 문제를 풀어보자
+    // 구명보트의 무게를 넘지않고 2명씩 태울 수 있도록 하는거야.투포인터? 
+    // 그리디는 매 순간 최선의 선택이랬어. 
+    return cnt;
+}
