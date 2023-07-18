@@ -28,3 +28,5 @@
 | 2주차   | [스택&큐](https://school.programmers.co.kr/learn/courses/30/parts/12081) | 같은숫자는싫어               | 기능개발       | 다리를지나는트럭         | 올바른괄호    | 주식가격 |     프로세스        |   `완료`     |
 | 3주차   | [힙](https://school.programmers.co.kr/learn/courses/30/parts/12117) | 더 맵게               | 디스크 컨트롤러       | 이중우선순위큐         | 최소 힙    | N번째 큰 수 |     절대값 힙        |   `완료`     |
 | 4주차   | [정렬](https://school.programmers.co.kr/learn/courses/30/parts/12198) | K번째 수               | H-Index       | 가장 큰 수         |  신입 사원  | 강의실 배정 |     좋다        |   `완료`     |
+| 5주차   | [완전탐색](https://school.programmers.co.kr/learn/courses/30/parts/12230) | 최소직사각형               | 모의고사       | 소수찾기         |  카펫  | 피로도 |     전력망둘로나누기+모음사전        |   `완료`     |
+| 6주차   | [그리디](https://school.programmers.co.kr/learn/courses/30/parts/12244) | 체육복               | 조이스틱       | 큰 수 만들기         |  구명보트  | 섬 연결하기 |     단속카메라        |   `완료`     |
